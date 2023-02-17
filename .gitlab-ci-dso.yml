@@ -50,7 +50,7 @@ package-app:
   variables:
     BUILD_IMAGE_NAME: maven:3.8-openjdk-17
     WORKING_DIR: .
-    ARTEFACT_DIR: .
+    ARTEFACT_DIR: ./target/*.jar
 
   stage: build-app
   extends:

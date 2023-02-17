@@ -1,6 +1,5 @@
 include:
   - local: "/includes/java-mvn.yml"
-include:
   - local: "/includes/docker.yml"
   - local: "/includes/vault.yml"
   - local: "/includes/rules.yml"

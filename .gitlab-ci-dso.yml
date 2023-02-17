@@ -61,7 +61,7 @@ package-app:
 docker-test:
   variables:
     WORKING_DIR: "."
-    IMAGE_NAME: test
+    IMAGE_NAME: app-java-forge-dso-demo
   stage: docker-test
   extends:
     - .buildah:test
@@ -69,7 +69,7 @@ docker-test:
 docker-build:
   variables:
     WORKING_DIR: "."
-    IMAGE_NAME: test
+    IMAGE_NAME: app-java-forge-dso-demo
   stage: docker-build
   extends:
     - .kaniko:build

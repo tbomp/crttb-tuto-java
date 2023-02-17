@@ -72,4 +72,4 @@ docker-build:
     IMAGE_NAME: test
   stage: docker-build
   extends:
-    - .buildah:build
+    - .kaniko:build

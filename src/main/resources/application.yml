@@ -4,4 +4,4 @@ spring:
     username: demo_dso
     password: demo_dso
   liquibase:
-    change-log: classpath:db/changelog/0000-initial_schema.xml
+    change-log: classpath:db/master.xml

@@ -5,6 +5,3 @@ spring:
     password: demo_dso
   liquibase:
     change-log: classpath:db/changelog/0000-initial_schema.xml
-
-server:
-  port: 9090

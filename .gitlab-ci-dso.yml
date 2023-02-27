@@ -15,9 +15,6 @@ cache:
     - node_modules
 
 variables:
-  MAVEN_OPTS: "-Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository"
-  MAVEN_CLI_OPTS: ""
-  MVN_CONFIG_FILE: $MVN_CONFIG
   TAG: "${CI_COMMIT_REF_SLUG}"
   DOCKERFILE: Dockerfile
   REGISTRY_URL: "${QUAY_ROOT_URL}/${PROJECT_PATH}"
@@ -45,6 +42,9 @@ quality_app:
 
 package-app:
   variables:
+    MAVEN_OPTS: "-Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository"
+    MAVEN_CLI_OPTS: ""
+    MVN_CONFIG_FILE: $MVN_CONFIG
     BUILD_IMAGE_NAME: maven:3.8-openjdk-17
     WORKING_DIR: .
     ARTEFACT_DIR: ./target/*.jar

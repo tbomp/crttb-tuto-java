@@ -1,8 +1,11 @@
 include:
-  - local: "/includes/java-mvn.yml"
-  - local: "/includes/docker.yml"
-  - local: "/includes/vault.yml"
-  - local: "/includes/rules.yml"
+  - project: $CATALOG_PATH
+    file:
+      - vault-ci.yml
+      - kaniko-ci.yml
+      - java-mvn.yml
+    ref: main
+
 
 default:
   image: alpine:latest
@@ -17,14 +20,13 @@ cache:
 variables:
   TAG: "${CI_COMMIT_REF_SLUG}"
   DOCKERFILE: Dockerfile
-  REGISTRY_URL: "${QUAY_ROOT_URL}/${PROJECT_PATH}"
+  REGISTRY_URL: "${IMAGE_REPOSITORY}"
 
 
 stages:
   - read-secret
   - quality-app
   - build-app
-  - docker-test
   - docker-build
 
 read_secret:
@@ -53,20 +55,10 @@ package-app:
   extends:
     - .java:build
 
-
-
-docker-test:
-  variables:
-    WORKING_DIR: "."
-    IMAGE_NAME: app-java-forge-dso-demo
-  stage: docker-test
-  extends:
-    - .buildah:test
-
 docker-build:
   variables:
     WORKING_DIR: "."
     IMAGE_NAME: app-java-forge-dso-demo
   stage: docker-build
   extends:
-    - .kaniko:build
+    - .kaniko:simple-build-push

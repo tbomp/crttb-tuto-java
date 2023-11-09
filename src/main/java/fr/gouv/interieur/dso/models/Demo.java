@@ -6,8 +6,6 @@ public class Demo {
 
     private String name;
 
-    private String anotherThing;
-
     public int getId() {
         return id;
     }
@@ -22,14 +20,6 @@ public class Demo {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getAnotherThing() {
-        return anotherThing;
-    }
-
-    public void setAnotherThing(String anotherThing) {
-        this.anotherThing = anotherThing;
     }
     
 }

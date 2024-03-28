@@ -6,8 +6,7 @@ include:
       - java-mvn.yml
     ref: main
 
-default:
-  image: alpine:latest
+# default:
 #  tags:
 #    - ADD_CUSTOM_TAG_HERE
 

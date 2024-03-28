@@ -6,6 +6,10 @@ include:
       - java-mvn.yml
     ref: main
 
+workflow:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "web"
+      when: always
 
 default:
   image: alpine:latest
@@ -21,7 +25,6 @@ variables:
   TAG: "${CI_COMMIT_REF_SLUG}"
   DOCKERFILE: Dockerfile
   REGISTRY_URL: "${IMAGE_REPOSITORY}"
-
 
 stages:
   - read-secret
@@ -58,7 +61,16 @@ package-app:
 docker-build:
   variables:
     WORKING_DIR: "."
-    IMAGE_NAME: app-java-forge-dso-demo
+    IMAGE_NAME: java-demo
+  stage: docker-build
+  extends:
+    - .kaniko:simple-build-push
+
+docker-build-2:
+  variables:
+    WORKING_DIR: "."
+    IMAGE_NAME: javanaise-demo
+    DOCKERFILE: Dockerfile2
   stage: docker-build
   extends:
     - .kaniko:simple-build-push

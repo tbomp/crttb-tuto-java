@@ -23,7 +23,6 @@ variables:
 
 stages:
   - read-secret
-  - quality-app
   - build-app
   - docker-build
 
@@ -31,14 +30,6 @@ read_secret:
   stage: read-secret
   extends:
     - .vault:read_secret
-
-quality_app:
-  variables:
-    BUILD_IMAGE_NAME: maven:3.8-openjdk-17
-    WORKING_DIR: .
-  stage: quality-app
-  extends:
-    - .java:sonar
 
 package-app:
   variables:

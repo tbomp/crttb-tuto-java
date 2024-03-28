@@ -6,11 +6,6 @@ include:
       - java-mvn.yml
     ref: main
 
-workflow:
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "web"
-      when: always
-
 default:
   image: alpine:latest
 #  tags:
